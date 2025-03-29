@@ -19,7 +19,7 @@ function initFirebaseAdmin() {
 
   return {
     auth: getAuth(),
-    db: getFirestore(),
+    db: getFirestore().settings({ignoreUndefinedProperties:true}),
   };
 }
 
