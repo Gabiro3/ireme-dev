@@ -5,6 +5,8 @@ import { getFirestore } from "firebase-admin/firestore";
 // Initialize Firebase Admin SDK
 function initFirebaseAdmin() {
   const apps = getApps();
+  const db = getFirestore();
+  db.settings({ignoreUndefinedProperties: true});
 
   if (!apps.length) {
     initializeApp({
@@ -19,7 +21,7 @@ function initFirebaseAdmin() {
 
   return {
     auth: getAuth(),
-    db: getFirestore().settings({ignoreUndefinedProperties:true}),
+    db: getFirestore(),
   };
 }
 
