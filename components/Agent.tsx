@@ -26,6 +26,7 @@ const Agent = ({
   userId,
   interviewId,
   feedbackId,
+  profileImage,
   type,
   questions,
 }: AgentProps) => {
