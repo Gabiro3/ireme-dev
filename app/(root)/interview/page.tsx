@@ -6,11 +6,9 @@ const Page = async () => {
 
   return (
     <>
-      <h3>Interview generation</h3>
-
       <Agent
         userName={user?.name!}
-        userId={user?.id}
+        userId={user?.id || ""}
         type="generate"
       />
     </>
