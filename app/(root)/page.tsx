@@ -3,8 +3,7 @@ import Image from "next/image";
 
 import { Button } from "@/components/ui/button";
 import InterviewCard from "@/components/InterviewCard";
-
-import { getCurrentUser } from "@/lib/actions/auth.action";
+import { auth } from "@clerk/nextjs/server";
 import {
   getInterviewsByUserId,
   getLatestInterviews,
@@ -14,10 +13,10 @@ import {
 import * as AlertDialog from "@radix-ui/react-alert-dialog";
 
 export default async function Home() {
-  const user = await getCurrentUser();
+  const { userId } = await auth();
   const [userInterviews, allInterview] = await Promise.all([
-    getInterviewsByUserId(user?.id!),
-    getLatestInterviews({ userId: user?.id! }),
+    getInterviewsByUserId(userId || ""),
+    getLatestInterviews({ userId: userId || "" }),
   ]);
 
   const hasPastInterviews = userInterviews?.length! > 0;
@@ -77,7 +76,7 @@ export default async function Home() {
             </AlertDialog.Root>
           ) : (
             <Button asChild className="btn-primary max-sm:w-full">
-              <Link href="/interview">Start an Interview</Link>
+              <Link href="/schedule">Start an Interview</Link>
             </Button>
           )}
         </div>
@@ -99,7 +98,7 @@ export default async function Home() {
             userInterviews?.map((interview) => (
               <InterviewCard
                 key={interview.id}
-                userId={user?.id}
+                userId={userId || ""}
                 interviewId={interview.id}
                 role={interview.role}
                 type={interview.type}

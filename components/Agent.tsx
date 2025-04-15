@@ -31,7 +31,11 @@ interface AgentProps {
   userName: string;
   userId: string;
   interviewId?: string;
+  interviewType?: string;
+  selectedDate?: string;
+  selectedTime?: string;
   feedbackId?: string;
+  onSuccess?: (interviewId: string) => void;
   profileImage?: string;
   type: "generate" | "interview";
   questions?: string[];
@@ -43,7 +47,9 @@ const Agent = ({
   userId,
   interviewId,
   feedbackId,
-  profileImage,
+  interviewType,
+  selectedDate,
+  selectedTime,
   type,
   questions,
   interviewTitle = "What interview do you want to",
@@ -152,10 +158,17 @@ const Agent = ({
     setCallStatus(CallStatus.CONNECTING);
 
     if (type === "generate") {
-      await vapi.start(process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID!, {
+      const workflowId =
+        interviewType === "Student Interview"
+          ? process.env.NEXT_PUBLIC_VAPI_STUDENT_WORKFLOW_ID
+          : process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID;
+
+      await vapi.start(workflowId!, {
         variableValues: {
           username: userName,
           userid: userId,
+          selectedDate: selectedDate,
+          selectedTime: selectedTime,
         },
       });
     } else {

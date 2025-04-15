@@ -1,6 +1,8 @@
 import { Toaster } from "sonner";
 import type { Metadata } from "next";
 import { Space_Mono } from "next/font/google"; // Import Space Mono font
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 import "./globals.css";
 
@@ -8,7 +10,7 @@ import "./globals.css";
 const spaceMono = Space_Mono({
   variable: "--font-space-mono", // Define the CSS variable name
   subsets: ["latin"],
-  weight: "400"
+  weight: "400",
 });
 
 export const metadata: Metadata = {
@@ -22,12 +24,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <body className={`${spaceMono.className} antialiased pattern`}>
-        {children}
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+        signIn: { baseTheme: dark },
+        signUp: { baseTheme: dark },
+      }}
+    >
+      <html lang="en" className="dark">
+        <body className={`${spaceMono.className} antialiased pattern`}>
+          {children}
 
-        <Toaster />
-      </body>
-    </html>
+          <Toaster />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
