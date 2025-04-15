@@ -37,7 +37,7 @@ interface ScheduleInterviewProps {
 export function ScheduleInterview({
   userId,
   userName,
-  interviewTitle = "Quick Catch-Up",
+  interviewTitle = "Quick Catch-Ups",
   description = "Let's connect and discuss your project, ideas, or any challenges you're facing",
   platform = "Ireme AI",
   duration = 30,
