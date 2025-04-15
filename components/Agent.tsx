@@ -159,7 +159,7 @@ const Agent = ({
 
     if (type === "generate") {
       const workflowId =
-        interviewType === "Student Interview"
+        interviewType === "Presentation Prep Interview"
           ? process.env.NEXT_PUBLIC_VAPI_STUDENT_WORKFLOW_ID
           : process.env.NEXT_PUBLIC_VAPI_WORKFLOW_ID;
 

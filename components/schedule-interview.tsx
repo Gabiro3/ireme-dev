@@ -13,7 +13,6 @@ import { toast } from "sonner";
 const INTERVIEW_TYPES = {
   "Job Prep Interview":
     "For professionals seeking to refine their interview preparation skills before a job interview.",
-  "Student Interview": "For students preparing for college interviews.",
   "Presentation Prep Interview":
     "For startup founders and other professionals preparing for a startup pitch deck, class presentation, or speech proofreading.",
 };
