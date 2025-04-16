@@ -25,27 +25,17 @@ export async function POST(request: Request) {
         Please return only the questions, without any additional explanation or context.
         The questions are going to be read by a voice assistant, so avoid using "/", "*", or other special characters.
         
-        Return a valid JSON array of questions like ["Question 1", "Question 2", "Question 3"] and nothing else. Do not include any special characters.
+        Return the questions formatted like this:
+        ["Question 1", "Question 2", "Question 3"]
     
         Thank you! <3
       `,
     });
-    let parsedQuestions;
-    try {
-      parsedQuestions =
-        typeof questions === "string" ? JSON.parse(questions) : questions;
-    } catch (error) {
-      console.error("Error parsing JSON:", questions);
-      return Response.json(
-        { success: false, error: "Invalid JSON format" },
-        { status: 500 }
-      );
-    }
 
     const interview = {
-      questions: parsedQuestions,
-      selectedDate,
-      selectedTime,
+      questions: JSON.parse(questions),
+      selectedDate: selectedDate,
+      selectedTime: selectedTime,
       userId: userid,
       finalized: true,
       interview_type: presentation_type,
