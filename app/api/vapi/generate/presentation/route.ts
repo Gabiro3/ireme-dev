@@ -31,9 +31,15 @@ export async function POST(request: Request) {
         Thank you! <3
       `,
     });
-
+    // 🧼 Strip markdown-style code block wrapping if it exists
+    const cleaned = questions
+      .trim()
+      .replace(/^```json/, "")
+      .replace(/^```/, "")
+      .replace(/```$/, "")
+      .trim();
     const interview = {
-      questions: JSON.parse(questions),
+      questions: JSON.parse(cleaned),
       selectedDate: selectedDate,
       selectedTime: selectedTime,
       userId: userid,
