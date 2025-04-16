@@ -30,6 +30,7 @@ export async function POST(request: Request) {
         Thank you! <3
       `,
     });
+    console.log(questions);
 
     const interview = {
       questions: JSON.parse(questions),
