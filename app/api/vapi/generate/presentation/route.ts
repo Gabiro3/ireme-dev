@@ -30,12 +30,22 @@ export async function POST(request: Request) {
         Thank you! <3
       `,
     });
-    console.log(questions);
+    let parsedQuestions;
+    try {
+      parsedQuestions =
+        typeof questions === "string" ? JSON.parse(questions) : questions;
+    } catch (error) {
+      console.error("Error parsing JSON:", questions);
+      return Response.json(
+        { success: false, error: "Invalid JSON format" },
+        { status: 500 }
+      );
+    }
 
     const interview = {
-      questions: JSON.parse(questions),
-      selectedDate: selectedDate,
-      selectedTime: selectedTime,
+      questions: parsedQuestions,
+      selectedDate,
+      selectedTime,
       userId: userid,
       finalized: true,
       interview_type: presentation_type,
