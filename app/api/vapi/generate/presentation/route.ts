@@ -25,8 +25,7 @@ export async function POST(request: Request) {
         Please return only the questions, without any additional explanation or context.
         The questions are going to be read by a voice assistant, so avoid using "/", "*", or other special characters.
         
-        Return the questions formatted like this:
-        ["Question 1", "Question 2", "Question 3"]
+        Return a valid JSON array of questions like ["Question 1", "Question 2", "Question 3"] and nothing else. Do not include any special characters.
     
         Thank you! <3
       `,
