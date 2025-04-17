@@ -44,7 +44,7 @@ export async function POST(request: Request) {
       selectedTime: selectedTime,
       userId: userid,
       finalized: true,
-      interview_type: presentation_type,
+      presentation_type: presentation_type,
       createdAt: new Date().toISOString(),
     };
 

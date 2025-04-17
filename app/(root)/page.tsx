@@ -100,10 +100,20 @@ export default async function Home() {
                 key={interview.id}
                 userId={userId || ""}
                 interviewId={interview.id}
-                role={interview.role}
-                type={interview.type}
-                techstack={interview.techstack}
+                role={interview?.role || ""}
+                type={
+                  typeof interview?.type === "string"
+                    ? interview.type
+                    : Array.isArray(interview.presentation_type)
+                    ? interview.presentation_type.join(", ")
+                    : interview.presentation_type || ""
+                }
+                techstack={
+                  Array.isArray(interview?.techstack) ? interview.techstack : []
+                }
                 createdAt={interview.createdAt}
+                selectedDate={interview.selectedDate}
+                selectedTime={interview.selectedTime}
               />
             ))
           ) : (

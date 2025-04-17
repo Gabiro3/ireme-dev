@@ -117,6 +117,7 @@ export async function getInterviewsByUserId(
     .where("userId", "==", userId)
     .orderBy("createdAt", "desc")
     .get();
+  console.log(interviews);
 
   return interviews.docs.map((doc) => ({
     id: doc.id,

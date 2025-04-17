@@ -16,7 +16,10 @@ interface Feedback {
 interface Interview {
   id: string;
   role: string;
+  selectedDate: string;
+  selectedTime: string;
   level: string;
+  presentation_type?: string[];
   questions: string[];
   techstack: string[];
   createdAt: string;
@@ -40,6 +43,8 @@ interface User {
 
 interface InterviewCardProps {
   interviewId?: string;
+  selectedDate?: string;
+  selectedTime?: string;
   userId?: string;
   role: string;
   type: string;
